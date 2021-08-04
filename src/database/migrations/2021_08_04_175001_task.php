@@ -18,6 +18,8 @@ class Task extends Migration
             $table->string('name');
             $table->text('description');
             $table->foreignId('category_id')->unsigned();
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
             $table->foreign('category_id')
                 ->references('id')->on('category')
                 ->onDelete('cascade');
