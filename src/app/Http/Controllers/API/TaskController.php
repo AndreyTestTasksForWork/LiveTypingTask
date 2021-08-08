@@ -67,9 +67,4 @@ class TaskController extends Controller
     {
         return response()->json(['success' => (new Task())->change($id)], 200);
     }
-
-    public function getTaskByCategory(Request $request, int $category_id)
-    {
-
-    }
 }
