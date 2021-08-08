@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\UserController;
@@ -19,7 +18,6 @@ use App\Http\Controllers\API\UserController;
 Route::post('login', [UserController::class, 'login'])->name('login');
 Route::post('register', [UserController::class, 'register']);
 
-Route::get('/task', [TaskController::class, 'get'])->middleware('auth:api');;
-Route::get('/task/{category_id}', [TaskController::class, 'getTaskByCategory'])->middleware('auth:api');;
-Route::put('/task/status', [TaskController::class, 'setStatus'])->middleware('auth:api');;
-Route::get('/task/change/{id}', [TaskController::class, 'change'])->middleware('auth:api');;
+Route::get('/task/category/{category_id}', [TaskController::class, 'getTasksByCategory'])->middleware('auth:api');
+Route::put('/task/status', [TaskController::class, 'setStatus'])->middleware('auth:api');
+Route::get('/task/change/{id}', [TaskController::class, 'change'])->middleware('auth:api');

@@ -13,12 +13,15 @@ use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
+    public const TASK_LIMIT = 5;
+
     /**
+     * @param int $category_id
      * @return JsonResponse
      */
-    public function get() : JsonResponse
+    public function getTasksByCategory(int $category_id) : JsonResponse
     {
-        return response()->json(['success' => (new Task())->getUniq(Auth::user())], 200);
+        return response()->json(['success' => Auth::user()->getTodayTasksByCategory($category_id, self::TASK_LIMIT)], 200);
     }
 
     /**

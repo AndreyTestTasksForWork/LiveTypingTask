@@ -18,7 +18,7 @@ class UserTask extends Migration
             $table->integer('status');
             $table->foreignId('category_id')->unsigned();
             $table->foreignId('task_id')->unsigned();
-            $table->dateTime('created_at');
+            $table->date('created_at');
             $table->dateTime('updated_at');
             $table->foreign('category_id')
                 ->references('id')->on('category')
