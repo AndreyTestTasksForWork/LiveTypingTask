@@ -18,15 +18,16 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
-    public function login(){
+    public function login() : JsonResponse
+    {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
 
             return response()->json(['success' => $success], $this->successStatus);
-        } else {
-            return response()->json(['error'=>'Unauthorised'], 401);
         }
+
+        return response()->json(['error' => 'Unauthorised'], 401);
     }
 
     /**
@@ -35,7 +36,7 @@ class UserController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function register(Request $request)
+    public function register(Request $request) : JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
